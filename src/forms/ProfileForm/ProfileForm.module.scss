@@ -1,0 +1,19 @@
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 40px;
+}
+
+.errorMessage {
+  color: red;
+}
+
+.inputWrapper {
+  max-width: 200px;
+}
+
+.submitButton {
+  width: 200px;
+  margin-top: 16px;
+}

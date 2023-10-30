@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import styles from "./Select.module.scss";
 
-type SelectProps = React.SelectHTMLAttributes<HTMLSelectElement> & {
+type SelectProps = {
   options: HTMLOptionElement[];
-  onChange: (value?: HTMLOptionElement) => void;
+  onChange: (option?: HTMLOptionElement) => void;
+  value?: string;
 };
 
-export const Select = ({ options, onChange, ...otherProps }: SelectProps) => {
-  const { value } = otherProps;
+export const Select = ({ options, onChange, value }: SelectProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [highlightedIndex, setHighlightedIndex] = useState<number>(-1);
   const clearOptions = (
@@ -18,7 +18,9 @@ export const Select = ({ options, onChange, ...otherProps }: SelectProps) => {
   };
 
   const selectOption = (option: HTMLOptionElement) => {
-    if (value !== option.value) onChange(option);
+    if (value !== option.value) {
+      onChange(option);
+    }
   };
 
   const handleSelectOption = (

@@ -1,25 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import { Select } from "./components/select/Select";
 
 function App() {
+  const options = [
+    { value: "paris", label: "Paris" } as HTMLOptionElement,
+    { value: "london", label: "Londres" } as HTMLOptionElement,
+  ];
+
+  const [value, setValue] = useState<string>("paris");
+
+  const handleOnChange = (value: HTMLOptionElement) => {
+    setValue(value.value);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Select
+        options={options}
+        value={value}
+        onChange={(e) => handleOnChange(e as HTMLOptionElement)}
+      />
+    </>
   );
 }
 
